@@ -1,22 +1,23 @@
+'use strict';
 
+let main = document.getElementById('modal_main');
+let success = document.getElementById('modal_success');
+let arrModalLinks = Array.from(document.getElementsByClassName('modal__close'));
 
-let links = document.getElementsByClassName('modal__close'); // получили три элемента класса modal__close
+main.classList.toggle("modal_active");
 
-document.getElementById('modal_main').style.display = "block";//показать окно modal_main при загрузке
-
-let element = links[0];
-element.onclick = function() {
-    document.getElementById('modal_main').style.display = "none";//по клику на крестик - скрыть окно modal_main
-};
-
-element = links[1];
-element.onclick = function() {
-    document.getElementById('modal_success').style.display = "block";//по клику на кпасное (Сделать хорошо) - показать окно modal_success };
-    document.getElementById('modal_main').style.display = "none";//по клику на кпасное (Сделать хорошо)- скрыть окно modal_main
-};
-
-element = links[2];
-element.onclick = function() {
-    document.getElementById('modal_success').style.display = "none";//по клику на крестик - скрыть окно modal_success
-};
-
+for (let i = 0; i < arrModalLinks.length; i++) {
+    let arrModalLink = arrModalLinks[i];
+    arrModalLink.onclick = function() {
+        if (this.closest('div') === this) {
+            main.classList.remove("modal_active");
+        }
+        if (this.closest('a') === this) {
+            success.classList.toggle("modal_active");  
+            main.classList.remove("modal_active");
+        }
+        if (this.closest('div') === this) {
+            success.classList.remove("modal_active");
+        }
+    };
+}
