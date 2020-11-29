@@ -19,11 +19,23 @@ class Game {
   registerEvents() {
     /*
       TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
+      Написать обработчик события, который откликается на каждый введённый символ.
+      В случае правильного ввода слова вызываем this.success(). При неправильном вводе символа - this.fail();
      */
+    document.addEventListener("keydown", (event) => {
+      // Получаем DOM-элемент текущего символа, который необходимо ввести (свойство this.currentSymbol) в верхнем регистре:
+      let currentSymbolUpperCase = this.currentSymbol.textContent.toUpperCase();
+      //Получаем символ, который введён с клавиатуры, тоже в верхнем регистре:
+      let keydownSymbolUpperCase = event.key.toUpperCase();
+      // если два символа одинаковые то this.success(); иначе  this.fail():
+      if (currentSymbolUpperCase == keydownSymbolUpperCase) {
+        this.success();
+      } else {
+        this.fail();
+      }       
+   });
+   
+
   }
 
   success() {
